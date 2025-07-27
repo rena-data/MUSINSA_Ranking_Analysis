@@ -7,13 +7,42 @@
 ```
 MUSINSA_Ranking_Analysis/
 ├── data/                           # 크롤링된 데이터 저장 디렉토리
+│   ├── musinsa_ranking_precise.xlsx
+│   └── musinsa_ranking_precise.pkl
 ├── notebooks/                      # Jupyter Notebook 분석 파일
-│   └── musinsa_analysis.ipynb
+│   └── musinsa_analysis.ipynb      # 데이터 분석 및 시각화 노트북
 ├── musinsa_precise_crawler.py      # 정밀 크롤링 스크립트 (병렬 처리)
 ├── setup_chromedriver.py           # ChromeDriver 자동 설치 스크립트
+├── data_preprocessing.py           # 데이터 전처리 모듈
+├── marketing_analysis.py           # 마케팅 분석 클래스 및 메서드
+├── app.py                          # Streamlit 대시보드 애플리케이션
+├── run_dashboard.sh                # 대시보드 실행 스크립트
+├── run_notebook.py                 # 분석 결과 실행 파일 (CLI용)
 ├── requirements.txt                # 필요한 패키지 목록
 └── README.md                       # 프로젝트 설명서
 ```
+
+## 파일별 역할
+
+### 1. 데이터 수집
+- **`musinsa_precise_crawler.py`**: 무신사 전체 카테고리 상위 100개 상품 정보를 병렬 처리로 크롤링
+- **`setup_chromedriver.py`**: Chrome 버전에 맞는 ChromeDriver 자동 설치 (M1/M2 Mac 지원)
+
+### 2. 데이터 처리 및 분석
+- **`data_preprocessing.py`**: 크롤링된 데이터의 전처리 (가격/할인율/리뷰수 정제, 구간 분류)
+- **`marketing_analysis.py`**: 마케팅 인사이트 도출을 위한 분석 클래스
+  - 가격/할인 전략 분석
+  - 브랜드/카테고리 인사이트
+  - 고객 반응 분석
+  - 경쟁 포지셔닝 분석
+
+### 3. 시각화 및 대시보드
+- **`app.py`**: Streamlit 기반 인터랙티브 마케팅 분석 대시보드
+- **`notebooks/musinsa_analysis.ipynb`**: Jupyter Notebook 형태의 상세 분석
+- **`run_notebook.py`**: CLI에서 분석 결과를 실행하고 시각화 파일 생성
+
+### 4. 유틸리티
+- **`run_dashboard.sh`**: 대시보드를 간편하게 실행하는 쉘 스크립트
 
 ## 설치 방법
 
@@ -41,11 +70,22 @@ python musinsa_precise_crawler.py
 
 ### 2. 데이터 분석
 
+#### 방법 1: Jupyter Notebook 사용
 ```bash
 jupyter notebook notebooks/musinsa_analysis.ipynb
 ```
 
-Jupyter Notebook을 실행하여 데이터 분석 결과를 확인할 수 있습니다.
+#### 방법 2: Streamlit 대시보드 사용
+```bash
+./run_dashboard.sh
+# 또는
+python -m streamlit run app.py
+```
+
+#### 방법 3: CLI에서 직접 실행
+```bash
+python run_notebook.py
+```
 
 ## 수집 데이터
 
@@ -83,3 +123,8 @@ Jupyter Notebook을 실행하여 데이터 분석 결과를 확인할 수 있습
 - 크롤링 시 과도한 요청을 방지하기 위해 적절한 딜레이를 적용했습니다.
 - 웹사이트 구조가 변경되면 크롤링 코드 수정이 필요할 수 있습니다.
 - ChromeDriver는 Chrome 브라우저 버전과 호환되어야 합니다.
+- 대시보드 실행 시 기본 포트는 8501입니다.
+
+## 라이선스
+
+이 프로젝트는 교육 및 연구 목적으로 제작되었습니다.
