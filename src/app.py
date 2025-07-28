@@ -4,7 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
-from marketing_analysis import MusinsaMarketingAnalyzer
+from analysis.marketing_analysis import MusinsaMarketingAnalyzer
 
 # 페이지 설정
 st.set_page_config(

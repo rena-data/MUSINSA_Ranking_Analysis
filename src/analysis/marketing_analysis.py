@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from data_preprocessing import load_and_preprocess_data
+from preprocessing.data_preprocessing import load_and_preprocess_data
 
 class MusinsaMarketingAnalyzer:
     def __init__(self, data_path):
